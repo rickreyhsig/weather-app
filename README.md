@@ -12,6 +12,10 @@ application up and running.
 
 #### Setup OpenWeather API client
 ```
+## Set your key in .env
+# OPENWEATHER_API_KEY=<key>
+
+## rails c
 require 'dotenv/load'
 client = OpenWeather::Client.new(api_key: ENV['OPENWEATHER_API_KEY'])
 weather = client.current_weather(city: 'Silver Spring', country: 'US', units: 'metric', lang: 'en')
