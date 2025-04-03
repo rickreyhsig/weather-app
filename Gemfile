@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Open weather ruby gem
-gem 'open-weather-ruby-client'
+gem "open-weather-ruby-client"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
