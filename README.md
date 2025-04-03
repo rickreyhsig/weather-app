@@ -8,6 +8,9 @@ application up and running.
 #### Ruby version
 3.4.2
 
+#### Rails version
+8.0.2
+
 ### Configuration
 
 #### Setup OpenWeather API client
