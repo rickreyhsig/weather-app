@@ -3,9 +3,18 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+
+## Setup OpenWeather API client
+```
+require 'dotenv/load'
+client = OpenWeather::Client.new(api_key: ENV['OPENWEATHER_API_KEY'])
+weather = client.current_weather(city: 'Silver Spring', country: 'US', units: 'metric', lang: 'en')
+```
+
+### Dependencies
 
 * Ruby version
+3.4.2
 
 * System dependencies
 
