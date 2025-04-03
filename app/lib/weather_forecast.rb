@@ -1,7 +1,9 @@
-require 'dotenv/load'
+require "dotenv/load"
+# require "open_weather"
 
 class WeatherForecast
   def initialize
+    binding.irb
     @client = OpenWeather::Client.new(api_key: ENV['OPENWEATHER_API_KEY'])
   end
 
