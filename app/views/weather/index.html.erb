@@ -1,0 +1,19 @@
+<h1>Weather Forecast</h1>
+
+<%= form_with url: weather_fetch_path, method: :post, data: { turbo_stream: true } do |f| %>
+  <div>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+  <div>
+    <%= f.label :zip %>
+    <%= f.text_field :zip %>
+  </div>
+  <div>
+    <%= f.submit "Get Weather" %>
+  </div>
+<% end %>
+
+<div id="weather_result">
+  <%= render partial: "result", locals: { result: nil } %>
+</div>
