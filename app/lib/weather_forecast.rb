@@ -1,19 +1,17 @@
 require "dotenv/load"
-# require "open_weather"
 
 class WeatherForecast
-  def initialize
-    binding.irb
-    @client = OpenWeather::Client.new(api_key: ENV['OPENWEATHER_API_KEY'])
+  def initialize(client = OpenWeather::Client.new(api_key: ENV['OPENWEATHER_API_KEY']))
+    @client = client
   end
 
   def process(options = {})
       if options[:city].blank? && options[:zip].blank?
         response = { data: nil, error: 'Please pass in a city OR zip.', cache: false }.to_json
       elsif options[:zip].present?
-        response = @client.current_weather(zip: options[:zip])
+        response = @client.current_weather({ zip: options[:zip] })
       else
-        response = @client.current_weather(city: options[:city])
+        response = @client.current_weather({ city: options[:city] })
       end
 
       return response
