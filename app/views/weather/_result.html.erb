@@ -1,8 +1,16 @@
-<% if result.present? && !result.is_a?(String) %>
-  <h2>Weather Data:</h2>
-  <pre><%= JSON.pretty_generate(result) %></pre>
-<% elsif result.present? %>
-  <p style="color: red;"><%= result %></p>
+<% if result.present? %>
+  <h2>Current Weather:</h2>
+  <p>Temperature: <%= result.main.temp_f %>°F</p>
+  <p>High: <%= result.main.temp_max_f %>°F</p>
+  <p>Low: <%= result.main.temp_min_f %>°F</p>
+
+  <h2>Extended Forecast:</h2>
+  <ul>
+    <li>Date: <%= result.dt %></li>
+    <li>Feels like: <%= result.main.feels_like_f %> °F</li>
+    <li>Pressure: <%= result.main.pressure %></li>
+    <li>Humidity: <%= result.main.humidity %></li>
+  </ul>
 <% else %>
-  <p>Enter a city or zip to get the forecast.</p>
+  <p>No weather data available.</p>
 <% end %>
