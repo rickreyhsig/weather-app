@@ -1,8 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 ### Dependencies
 
 #### Ruby version
@@ -31,8 +28,8 @@ bin/rails db:migrate
 bin/rubocop
 
 #### How to run the test suite
-bin/rails test test/lib/weather_forecast_test.rb # single test
-bin/rails test # full test suite
+- `bin/rails test test/lib/weather_forecast_test.rb` # single test
+- `bin/rails test` # full test suite
 
 ### Diagram
 <img width="1079" alt="Screenshot 2025-04-06 at 10 30 57 PM" src="https://github.com/user-attachments/assets/0b211849-c000-482a-ba7c-bb0cb8ebdca6" />
