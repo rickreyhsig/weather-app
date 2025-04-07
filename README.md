@@ -31,9 +31,12 @@ bin/rails db:migrate
 bin/rubocop
 
 #### How to run the test suite
+bin/rails test test/lib/weather_forecast_test.rb # single test
+bin/rails test # full test suite
 
-#### Services (job queues, cache servers, search engines, etc.)
+#### Diagram
+![alt text](<../../Desktop/Screenshot 2025-04-06 at 10.30.57 PM.png>)
 
-#### Deployment instructions
+#### UI
+![alt text](<../../Desktop/Screenshot 2025-04-06 at 10.28.04 PM.png>)
 
-#### ...
