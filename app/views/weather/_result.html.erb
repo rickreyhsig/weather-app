@@ -1,16 +1,20 @@
 <% if result.present? %>
   <h2>Current Weather:</h2>
-  <p>Temperature: <%= result.main.temp_f %>°F</p>
-  <p>High: <%= result.main.temp_max_f %>°F</p>
-  <p>Low: <%= result.main.temp_min_f %>°F</p>
+  <p>Temperature: <%= result[:data].main.temp_f %>°F</p>
+  <p>High: <%= result[:data].main.temp_max_f %>°F</p>
+  <p>Low: <%= result[:data].main.temp_min_f %>°F</p>
 
   <h2>Extended Forecast:</h2>
   <ul>
-    <li>Date: <%= result.dt %></li>
-    <li>Feels like: <%= result.main.feels_like_f %> °F</li>
-    <li>Pressure: <%= result.main.pressure %></li>
-    <li>Humidity: <%= result.main.humidity %></li>
+    <li>Date: <%= result[:data].dt %></li>
+    <li>Feels like: <%= result[:data].main.feels_like_f %> °F</li>
+    <li>Pressure: <%= result[:data].main.pressure %></li>
+    <li>Humidity: <%= result[:data].main.humidity %></li>
   </ul>
+
+  <% if result[:cache] %>
+    <p style="color: green;">(result from cache)</p>
+  <% end %>
 <% else %>
   <p>No weather data available.</p>
 <% end %>

@@ -6,19 +6,29 @@ class WeatherForecast
   end
 
   def process(options = {})
-      if options[:city].blank? && options[:zip].blank?
-        response = { data: nil, error: 'Please pass in a city OR zip.', cache: false }.to_json
-      elsif options[:zip].present?
-        response = @client.current_weather({ zip: options[:zip] })
-      else
-        response = @client.current_weather({ city: options[:city] })
-      end
+    if options[:city].blank? && options[:zip].blank?
+      return { data: nil, error: 'Please pass in a city OR zip.', cache: false }
+    end
 
-      return response
+    if options[:zip].present?
+      cache_key = "weather_forecast_zip_#{options[:zip]}"
+      is_from_cache = Rails.cache.exist?(cache_key)
+      response = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
+        @client.current_weather({ zip: options[:zip] })
+      end
+      return { data: response, error: nil, cache: is_from_cache }
+    else
+      # no caching for city-based queries
+      response = @client.current_weather({ city: options[:city] })
+      return { data: response, error: nil, cache: false }
+    end
+  rescue => e
+    { data: nil, error: e.message, cache: false }
   end
 end
 
 =begin
+  # Usage examples
   client = WeatherForecast.new
   client.process(zip: "20906")
   client.process(zip: "20906", country: "US")
