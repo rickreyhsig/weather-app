@@ -1,13 +1,13 @@
 require "dotenv/load"
 
 class WeatherForecast
-  def initialize(client = OpenWeather::Client.new(api_key: ENV['OPENWEATHER_API_KEY']))
+  def initialize(client = OpenWeather::Client.new(api_key: ENV["OPENWEATHER_API_KEY"]))
     @client = client
   end
 
   def process(options = {})
     if options[:city].blank? && options[:zip].blank?
-      return { data: nil, error: 'Please pass in a city OR zip.', cache: false }
+      return { data: nil, error: "Please pass in a city OR zip.", cache: false }
     end
 
     if options[:zip].present?
@@ -16,11 +16,11 @@ class WeatherForecast
       response = Rails.cache.fetch(cache_key, expires_in: 30.minutes) do
         @client.current_weather({ zip: options[:zip] })
       end
-      return { data: response, error: nil, cache: is_from_cache }
+      { data: response, error: nil, cache: is_from_cache }
     else
       # no caching for city-based queries
       response = @client.current_weather({ city: options[:city] })
-      return { data: response, error: nil, cache: false }
+      { data: response, error: nil, cache: false }
     end
   rescue => e
     { data: nil, error: e.message, cache: false }
